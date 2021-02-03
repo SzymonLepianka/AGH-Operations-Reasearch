@@ -1,0 +1,101 @@
+\documentclass{article}[]
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multirow}
+%\usepackage{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MACRO
+
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\pay}{\mathit{pay}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\s}{\mathbf{s}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\r}{\mathbf{r}}
+\newcommand{\w}{\mathbf{w}}
+\renewcommand{\P}{\mathcal{P}}
+
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\tuple}[1]{\langle#1\rangle}
+\newcommand{\todo}[1]{\noindent{{\small\bf$<$\textsf{#1}$>$}}}
+
+\renewcommand{\sp}{\mathsf{sp}}
+\newcommand{\mcs}{\mathsf{cs}}
+\newcommand{\ssp}{\mathsf{ssp}}
+\newcommand{\SC}{\mathsf{SC}}
+\newcommand{\NE}{\mathsf{NE}}
+\newcommand{\SE}{\mathsf{SE}}
+
+\usepackage{makecell}
+
+%ALGORITMO
+\newcounter{stepcount}
+\newcommand{\step}{%
+        \stepcounter{stepcount}%
+        \thestepcount}
+\newcommand{\resetstep}{%
+        \setcounter{stepcount}{0}
+}
+
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{definition}
+\newtheorem{zad}{Zadanie}
+
+
+%\newtheorem{example}{Example}[section]
+%\newtheorem{definition}{Definition}[section]
+%\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{theorem}{Theorem}[section]
+
+%\newenvironment{proof}{\vspace{-1mm}{\em Proof.}}{\vspace{2mm}}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\begin{document}
+\title{Badania operacyjne i systemy wspomagania decyzji
+\\ \Large 07 Programowanie całkowitoliczbowe}
+\date{}
+
+\maketitle
+
+\begin{zad}
+Pan Creosote lubi zjeść dużo i dobrze, można powiedzieć, że jest to jego sens życia. Na koniec każdego miesiąca idzie zatem do swojej ulubionej restauracji, gdzie wydaje wszystkie pieniądze, które zostały mu z ostatniej wypłaty. Żeby jak najlepiej wydać swoje pieniądze, Pan Creosote każdemu daniu w restauracji przypisał współczynnik mniam-mniam (im wyższy, tym lepszy), wskazujący jak bardzo smakuje mu dana potrawa. Znając ceny potraw, ich dostępność w restauracji, zawartość swojego portfela i współczynniki mniam-mniam, Pan Creosote planuje użyć komputera do znalezienia możliwie najsmaczniejszego zamówienia w restauracji. Jego znajomy, prowadzący zajęcia z badań operacyjnych na AGH, uznał, że to doskonała okazja, żeby zastosować programowanie całkoliczbowe. Pan Creosote bardzo się ucieszył i przedstawił mu swój problem w postaci poniższej tabelki:
+
+\begin{figure}[h!]
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		Listopad 2020 & \multicolumn{6}{c|}{Limit pieniędzy: 50£} \\
+		\hline
+		\makecell[c]{Nazwa dania} & \makecell[c]{moules \\marinières} & \makecell[c]{pâté de\\foie gras} & \makecell[c]{beluga\\caviar} & \makecell[c]{egg\\Benedictine} & \makecell[c]{wafer-thin\\ mint} & \makecell[c]{salmon\\mousse} \\
+		\hline
+		Cena & 2.15£ & 2.75£ & 3.35£ & 3.55£ & 4.20£ & 5.80£ \\
+		\hline
+		\makecell[c]{Współczynnik\\mniam-mniam}  & 3 & 4 & 4.5 & 4.65 & 8 & 9 \\
+		\hline
+		\makecell[c]{Na stanie\\w restauracji} & 5 & 6 & 7 & 5 & 1 & 1 \\
+		\hline
+	\end{tabular}
+\end{figure}
+
+
+Należy pomóc Panu Creosote, stworzyć odpowiedni model programowania całkowitoliczbowego i znaleźć optymalne zamówienie (o największym łącznym mniam-mniam).
+
+\end{zad}
+
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

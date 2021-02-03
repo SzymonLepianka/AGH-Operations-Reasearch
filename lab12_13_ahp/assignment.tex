@@ -1,0 +1,179 @@
+\documentclass{article}[UTF8]
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{multirow}
+%\usepackage{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MACRO
+
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\pay}{\mathit{pay}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\s}{\mathbf{s}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\r}{\mathbf{r}}
+\newcommand{\w}{\mathbf{w}}
+\renewcommand{\P}{\mathcal{P}}
+
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\tuple}[1]{\langle#1\rangle}
+\newcommand{\todo}[1]{\noindent{{\small\bf$<$\textsf{#1}$>$}}}
+
+\renewcommand{\sp}{\mathsf{sp}}
+\newcommand{\mcs}{\mathsf{cs}}
+\newcommand{\ssp}{\mathsf{ssp}}
+\newcommand{\SC}{\mathsf{SC}}
+\newcommand{\NE}{\mathsf{NE}}
+\newcommand{\SE}{\mathsf{SE}}
+
+%ALGORITMO
+\newcounter{stepcount}
+\newcommand{\step}{%
+        \stepcounter{stepcount}%
+        \thestepcount}
+\newcommand{\resetstep}{%
+        \setcounter{stepcount}{0}
+}
+
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{definition}
+\newtheorem{zad}{Zadanie}
+
+
+%\newtheorem{example}{Example}[section]
+%\newtheorem{definition}{Definition}[section]
+%\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{theorem}{Theorem}[section]
+
+%\newenvironment{proof}{\vspace{-1mm}{\em Proof.}}{\vspace{2mm}}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\begin{document}
+\title{Badania operacyjne i systemy wspomagania decyzji
+\\ \Large 12-13 AHP: rankingi i niespójność}
+\date{}
+
+\maketitle
+
+\begin{zad}
+
+Rodzina Kowalskich postanowiła zakupić dom. Po dłuższych poszukiwaniach znaleźli trzy oferty, które ich zainteresowały. Nie mogąc się zdecydować jednoznacznie na którąkolwiek z nich, postanowili porównać oferty parami w następujących kategoriach:
+1 - cena,
+2 - rozmiar domu,
+3 - dostęp do komunikacji miejskiej,
+4 - dzielnica,
+5 - wiek domu,
+6 - rozmiar ogródka,
+7 - wyposażenie,
+8 - stan techniczny.
+Efekty tych porównań, opisane przy użyciu fundamentalnej skali różnic, są zapisane w poniższych macierzach:
+
+
+$$C_1=\begin{pmatrix}
+1 & \frac{1}{7} & \frac{1}{5} \\
+7&1&3 \\
+5&\frac{1}{3}&1
+\end{pmatrix}, \
+C_2=\begin{pmatrix}
+1&5&9\\
+\frac{1}{5}&1&4\\
+\frac{1}{9}&\frac{1}{4}&1
+\end{pmatrix}, \
+C_3=\begin{pmatrix}
+1&4&\frac{1}{5}\\
+\frac{1}{4}&1&\frac{1}{9}\\
+5&9&1
+\end{pmatrix},
+$$
+$$
+C_4=\begin{pmatrix}
+1&9&4\\
+\frac{1}{9}&1&\frac{1}{4}\\
+\frac{1}{4}&4&1
+\end{pmatrix}, \
+C_5=\begin{pmatrix}
+1&1&1\\
+1&1&1\\
+1&1&1
+\end{pmatrix}, \
+C_6=\begin{pmatrix}
+1&6&4\\
+\frac{1}{6}&1&\frac{1}{3}\\
+\frac{1}{4}&3&1
+\end{pmatrix},
+$$
+$$C_7=\begin{pmatrix}
+1&9&6\\
+\frac{1}{9}&1&\frac{1}{3}\\
+\frac{1}{6}&3&1
+\end{pmatrix}, \
+C_8=\begin{pmatrix}
+1&\frac{1}{2}&\frac{1}{2}\\
+2&1&1\\
+2&1&1
+\end{pmatrix}.
+$$
+
+Porównanie na ile poszczególne kategorie są względem siebie dla nich ważne zostało opisane w poniższej macierzy:
+
+$$C_{parametry}=\begin{pmatrix}
+1&4&7&5&8&6&6&2\\
+\frac{1}{4}&1&5&3&7&6&6&\frac{1}{3}\\
+\frac{1}{7}&\frac{1}{5}&1&\frac{1}{3}&5&3&3&\frac{1}{5}\\
+\frac{1}{5}&\frac{1}{3}&3&1&6&3&4&\frac{1}{2}\\
+\frac{1}{8}&\frac{1}{7}&\frac{1}{5}&\frac{1}{6}&1&\frac{1}{3}&\frac{1}{4}&\frac{1}{7}\\
+\frac{1}{6}&\frac{1}{6}&\frac{1}{3}&\frac{1}{3}&3&1&\frac{1}{2}&\frac{1}{5}\\
+\frac{1}{6}&\frac{1}{6}&\frac{1}{3}&\frac{1}{4}&4&2&1&\frac{1}{5}\\
+\frac{1}{2}&3&5&2&7&5&5&1
+\end{pmatrix}
+$$
+
+Należy wyznaczyć rankingi poszczególnych macierzy porównań, ranking kategorii oraz globalny ranking alternatyw, używając metod EVM i GMM.
+
+
+\end{zad}
+
+\begin{zad}
+
+Policz indeksy spójności Satty'ego oraz indeks niespójności Koczkodaja dla poniższych macierzy:
+
+$$
+A = \begin{pmatrix}
+1&7&3\\
+\frac{1}{7}&1&2\\
+\frac{1}{3}&\frac{1}{2}&1
+\end{pmatrix},
+B=\begin{pmatrix}
+1&\frac{1}{5}&7&1\\
+5&1&\frac{1}{2}&2\\
+\frac{1}{7}&2&1&3\\
+1&\frac{1}{2}&\frac{1}{3}&1
+\end{pmatrix},
+C=\begin{pmatrix}
+1&2&5&1&7\\
+\frac{1}{2}&1&3&\frac{1}{2}&5\\
+\frac{1}{5}&\frac{1}{3}&1&\frac{1}{5}&2\\
+1&2&5&1&7\\
+\frac{1}{7}&\frac{1}{5}&\frac{1}{2}&\frac{1}{7}&1
+\end{pmatrix}
+$$
+
+
+\end{zad}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
